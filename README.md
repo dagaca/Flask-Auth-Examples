@@ -149,7 +149,7 @@ X-API-KEY: your_api_key_here
 ## ⚠️ **Rate Limiting**
 Endpoints are restricted based on the `.env` rate limit setting:
 ```ini
-RATE_LIMIT=5 per minute
+RATE_LIMIT=your_rate_limit_here (e.g., 5 per minute)
 ```
 📍 **GET** `/protected`  
 ⏳ **Exceeding the limit results in:**
