@@ -79,9 +79,9 @@ Access the **Swagger UI** at **http://127.0.0.1:8080/apidocs/** to explore avail
 📍 **POST** `/register`
 ```json
 {
-  "username": "johndoe",
-  "email": "john@example.com",
-  "password": "Secret123"
+  "username": "your_username",
+  "email": "your_email@adress.com",
+  "password": "your_password"
 }
 ```
 
@@ -89,8 +89,8 @@ Access the **Swagger UI** at **http://127.0.0.1:8080/apidocs/** to explore avail
 📍 **POST** `/login`
 ```json
 {
-  "email": "john@example.com",
-  "password": "Secret123"
+  "email": "your_email@adress.com",
+  "password": "your_password"
 }
 ```
 ✅ **Response:**
@@ -119,8 +119,8 @@ Authorization: Bearer your_jwt_token_here
 📍 **GET** `/basic-protected`  
 🔹 **Headers:**
 ```http
-Username: admin
-Password: adminpass
+Username: your_basic_auth_username
+Password: your_basic_auth_password
 ```
 ✅ **Response:**
 ```json
