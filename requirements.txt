@@ -1,0 +1,8 @@
+Flask
+Flasgger
+python-dotenv
+Flask-SQLAlchemy
+Flask-Limiter
+Flask-HTTPAuth
+PyJWT
+werkzeug
