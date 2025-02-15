@@ -43,17 +43,17 @@ pip install -r requirements.txt
 ### 5️⃣ **Create a .env File**
 Set up the `.env` file with the following variables:
 ```ini
-DATABASE_URL=sqlite:///users.db
-SECRET_KEY=supersecretkey
+DATABASE_URL=your_database_url_here
+SECRET_KEY=your_secret_key_here
 
-LOG_DIR=logs
-LOG_FILE=app.log
+LOG_DIR=your_log_directory_here
+LOG_FILE=your_log_file_name_here
 
-RATE_LIMIT=5 per minute
+RATE_LIMIT=your_rate_limit_here (e.g., 5 per minute)
 
-BASIC_USER=admin
-BASIC_PASS=adminpass
-API_KEY=123456789abcdef
+BASIC_USER=your_basic_auth_username
+BASIC_PASS=your_basic_auth_password
+API_KEY=your_api_key_here
 ```
 
 ---
