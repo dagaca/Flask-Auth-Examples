@@ -1,4 +1,4 @@
-# FlaskAPI-Secure
+# Flask-Auth-Examples
 
 FlaskAPI-Secure is a **secure, scalable, and modular Flask API** that provides **JWT authentication, OAuth 2.0 login (Google), and rate limiting**. It ensures **secure access to API endpoints** while following best practices for authentication and API management.
 
