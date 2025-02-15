@@ -1,187 +1,189 @@
-# Flask-Auth-Examples
+# 🔐 Flask Auth Examples (FAE)
 
-FlaskAPI-Secure is a **secure, scalable, and modular Flask API** that provides **JWT authentication, OAuth 2.0 login (Google), and rate limiting**. It ensures **secure access to API endpoints** while following best practices for authentication and API management.
-
----
-
-## **🔐 Features**
-- ✅ **JWT Authentication** (Secure user login & token-based access)
-- ✅ **Google OAuth 2.0 Login** (Social authentication)
-- ✅ **Rate Limiting** (Prevents excessive API requests)
-- ✅ **Database Integration** (User management with SQLite/PostgreSQL/MySQL)
-- ✅ **Swagger API Documentation** (Interactive API docs)
-- ✅ **Modular Code Structure** (Separation of concerns)
-- ✅ **Logging System** (Request/response tracking with log rotation)
+**Flask Auth Examples (FAE)** is a **Flask API project** demonstrating various **authentication methods** such as **JWT, Basic Authentication, and API Key Authentication**. It also integrates **Rate Limiting, Logging, and API Documentation with Swagger** to ensure security and maintainability.
 
 ---
 
-## **📦 Installation**
+## 📌 Features
+✔️ **JWT Authentication** – Secure user authentication with JSON Web Tokens  
+✔️ **Basic Authentication** – Username and password authentication  
+✔️ **API Key Authentication** – API key-based authentication for secure API access  
+✔️ **Rate Limiting** – Prevent abuse by restricting request rates  
+✔️ **Logging** – Logs API requests and responses for debugging and monitoring  
+✔️ **Swagger UI** – Provides an interactive API documentation  
+✔️ **Flask-SQLAlchemy** – ORM for database management  
 
-### **1️⃣ Clone the Repository**
+---
+
+## 🚀 Installation & Setup
+### 1️⃣ **Prerequisites**
+Before running the project, ensure you have the following:
+- Python **3.8+**
+- pip
+- **virtualenv** (recommended for isolated environments)
+
+### 2️⃣ **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/FlaskAPI-Secure.git
-cd FlaskAPI-Secure
+git clone https://github.com/yourusername/Flask-Auth-Examples.git
+cd Flask-Auth-Examples
 ```
 
-### **2️⃣ Create a Virtual Environment**
+### 3️⃣ **Create a Virtual Environment (Recommended)**
 ```bash
 python -m venv venv
-source venv/bin/activate  # On Windows use: venv\Scripts\activate
+source venv/bin/activate  # macOS/Linux
+venv\Scripts\activate     # Windows
 ```
 
-### **3️⃣ Install Dependencies**
+### 4️⃣ **Install Dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-### **4️⃣ Setup Environment Variables**
-Create a **.env** file in the root directory and add:
+### 5️⃣ **Create a .env File**
+Set up the `.env` file with the following variables:
 ```ini
-# JWT Secret Key
-SECRET_KEY=supersecretkey
+SECRET_KEY=your_secret_key
+DATABASE_URL=sqlite:///users.db
 
-# Database Settings
-DATABASE_URL=sqlite:///users.db  # Change to PostgreSQL or MySQL if needed
-
-# Rate Limit Configuration
+# Rate Limiting
 RATE_LIMIT=5 per minute
 
-# OAuth 2.0 Configuration (Google)
-GOOGLE_CLIENT_ID=your_google_client_id
-GOOGLE_CLIENT_SECRET=your_google_client_secret
-GOOGLE_REDIRECT_URI=http://localhost:5000/google/callback
-
-# Logging Configuration
-LOG_DIR=logs
-LOG_FILE=api.log
+# API Key Authentication
+API_KEY=your_api_key
 ```
 
-### **5️⃣ Initialize the Database**
-```bash
-flask db init
-flask db migrate -m "Initial migration."
-flask db upgrade
-```
+---
 
-### **6️⃣ Run the Application**
+## ▶️ **Running the Application**
+Start the Flask application:
 ```bash
 python run.py
 ```
-The API will be accessible at: **http://localhost:5000**
+The API will be available at **http://127.0.0.1:8080**.
 
 ---
 
-## **🛠️ API Endpoints**
+## 📖 **API Documentation (Swagger UI)**
+Access the **Swagger UI** at **http://127.0.0.1:8080/apidocs/** to explore available endpoints and their specifications.
 
-### **🔹 User Authentication (JWT)**
-#### **Register a User**
-```http
-POST /register
-```
-**Request Body:**
+---
+
+## 🔑 **Authentication Methods**
+
+### **1️⃣ JWT Authentication**
+#### **📌 User Registration**
+📍 **POST** `/register`
 ```json
 {
-    "username": "johndoe",
-    "email": "johndoe@example.com",
-    "password": "securepassword"
-}
-```
-**Response:**
-```json
-{
-    "message": "User registered successfully"
+  "username": "johndoe",
+  "email": "john@example.com",
+  "password": "Secret123"
 }
 ```
 
-#### **User Login**
-```http
-POST /login
-```
-**Request Body:**
+#### **📌 User Login (JWT Token Retrieval)**
+📍 **POST** `/login`
 ```json
 {
-    "email": "johndoe@example.com",
-    "password": "securepassword"
+  "email": "john@example.com",
+  "password": "Secret123"
 }
 ```
-**Response:**
+✅ **Response:**
 ```json
 {
-    "token": "your-jwt-token"
+  "token": "your_jwt_token_here"
 }
 ```
 
-#### **Access Protected Route**
+#### **📌 Accessing a JWT-Protected Endpoint**
+📍 **GET** `/protected`  
+🔹 **Headers:**
 ```http
-GET /protected
-Authorization: Bearer <your-jwt-token>
+Authorization: Bearer your_jwt_token_here
 ```
-**Response:**
+✅ **Response:**
 ```json
 {
-    "message": "Welcome, User 1!"
-}
-```
-
-### **🔹 Google OAuth 2.0 Login**
-#### **Redirect to Google Login**
-```http
-GET /google/login
-```
-
-#### **Google OAuth Callback**
-```http
-GET /google/callback
-```
-
-### **🔹 Rate-Limited Endpoint**
-#### **Test Rate Limiting**
-```http
-GET /limited
-```
-**Response if exceeded:**
-```json
-{
-    "message": "Too many requests"
+  "message": "Welcome, User 1!"
 }
 ```
 
 ---
 
-## **🌍 Swagger API Documentation**
-Once the API is running, **Swagger documentation** is available at:
-🔗 **http://localhost:8080/apidocs**
-
----
-
-## **📂 Project Structure**
+### **2️⃣ Basic Authentication**
+📍 **GET** `/basic-protected`  
+🔹 **Headers:**
+```http
+Username: admin
+Password: adminpass
 ```
-FlaskAPI-Secure/
-│── app/
-│   ├── __init__.py    # Initializes Flask, database, OAuth, rate limiter, logging
-│   ├── auth.py        # JWT authentication & token validation
-│   ├── database.py    # User model & database setup
-│   ├── oauth.py       # Google OAuth authentication
-│   ├── rate_limiter.py # API rate limiting
-│   ├── log_config.py  # Logging system
-│   ├── routes.py      # API endpoints
-│── .env               # Environment variables
-│── requirements.txt   # Required dependencies
-│── run.py             # Application entry point
-│── logs/              # API log files
+✅ **Response:**
+```json
+{
+  "message": "Welcome, admin!"
+}
 ```
 
 ---
 
-## **🙌 Contributing**
-Contributions are welcome! Feel free to:
-- ⭐ Star this repository
-- 🛠️ Fork and enhance it
-- 🔀 Submit a pull request
+### **3️⃣ API Key Authentication**
+📍 **GET** `/apikey-protected`  
+🔹 **Headers:**
+```http
+X-API-KEY: your_api_key_here
+```
+✅ **Response:**
+```json
+{
+  "message": "Welcome, API user!"
+}
+```
 
 ---
 
-## **📜 License**
-This project is licensed under the **MIT License**.
+## ⚠️ **Rate Limiting**
+Endpoints are restricted based on the `.env` rate limit setting:
+```ini
+RATE_LIMIT=5 per minute
+```
+📍 **GET** `/protected`  
+⏳ **Exceeding the limit results in:**
+```json
+{
+  "message": "Too many requests"
+}
+```
 
 ---
+
+## 📝 **Logging**
+All requests and responses are logged for monitoring and debugging.
+✅ **Example Log Output:**
+```bash
+2025-02-15 22:41:19,089 - app - INFO - Request URL: http://127.0.0.1:8080/protected
+2025-02-15 22:41:19,089 - app - INFO - Request Method: GET
+2025-02-15 22:41:19,089 - app - INFO - Authorization: Bearer eyJhbGciOiJI...
+2025-02-15 22:41:19,092 - app - INFO - User ID: 1 Access Granted
+```
+
+---
+
+## 🛠 **Technologies Used**
+| Technology         | Description |
+|-------------------|-------------|
+| **Flask**         | Python web framework |
+| **Flasgger**      | API documentation (Swagger UI) |
+| **Flask-SQLAlchemy** | ORM for database management |
+| **Flask-Limiter** | API Rate Limiting |
+| **Flask-HTTPAuth** | Basic Authentication |
+| **PyJWT**         | JWT Token management |
+
+---
+
+## 📜 **License**
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
+
+---
+
