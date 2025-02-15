@@ -24,7 +24,7 @@ Before running the project, ensure you have the following:
 
 ### 2️⃣ **Clone the Repository**
 ```bash
-git clone https://github.com/yourusername/Flask-Auth-Examples.git
+git clone https://github.com/dagaca/Flask-Auth-Examples.git
 cd Flask-Auth-Examples
 ```
 
@@ -43,14 +43,17 @@ pip install -r requirements.txt
 ### 5️⃣ **Create a .env File**
 Set up the `.env` file with the following variables:
 ```ini
-SECRET_KEY=your_secret_key
 DATABASE_URL=sqlite:///users.db
+SECRET_KEY=supersecretkey
 
-# Rate Limiting
+LOG_DIR=logs
+LOG_FILE=app.log
+
 RATE_LIMIT=5 per minute
 
-# API Key Authentication
-API_KEY=your_api_key
+BASIC_USER=admin
+BASIC_PASS=adminpass
+API_KEY=123456789abcdef
 ```
 
 ---
